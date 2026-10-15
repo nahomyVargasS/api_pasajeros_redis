@@ -4,7 +4,7 @@ from fastapi import FastAPI
 
 from app.cache.redis import check_redis_connection, redis_client
 from app.db.mongo import client
-from app.routes import cache, pasajeros
+from app.routes import cache, pasajeros, tarifas
 
 
 @asynccontextmanager
@@ -26,6 +26,7 @@ app = FastAPI(
 
 app.include_router(pasajeros.router, prefix="/api")
 app.include_router(cache.router, prefix="/api")
+app.include_router(tarifas.router, prefix="/api")
 
 
 @app.get("/")
